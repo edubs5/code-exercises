@@ -1,0 +1,71 @@
+# Using the Ruby language, have the function LetterChanges(str) take the str parameter being passed and modify it using the following algorithm. Replace every letter in the string with the letter following it in the alphabet (ie. c becomes d, z becomes a). Then capitalize every vowel in this new string (a, e, i, o, u) and finally return this modified string.
+
+
+def letter_changes(str)
+  ary = str.split("")
+  replaced_letters = replace_letters(ary)
+  finished_ary = upcase_vowels(replaced_letters)
+  finished_ary.join
+end
+
+def replace_letters(ary)
+  ary.map do |x|
+    if x == "z"
+      x = "a"
+    elsif x =~ /[a-y]/
+      x = x.next
+    else
+      x = x
+    end
+  end
+end
+
+def upcase_vowels(ary)
+  ary.map { |x| x =~ /[aeiou]/ ? x.capitalize : x = x }
+end
+
+letter_changes("hello world!")
+
+
+2nd solution using .ord method
+### => ### => ### => ### => ### => ### => ### => ### => ### => ### => ### => ### => ### => ### => ###
+
+def letter_changes(str)
+  ary = str.split("")
+  replaced_letters_ary = replace_letters(ary)
+  finished_ary = capitalize_vowels(replaced_letters_ary)
+  finished_ary.join("")
+end
+
+def replace_letters(ary)
+  new_ary = ary.map do |x|
+    if x.ord <= 122 && x.ord >= 97
+      x = (x.ord + 1).chr
+    else
+      x = x
+    end
+  end
+  new_ary
+end
+
+def capitalize_vowels(ary)
+  upcase_vowels_ary = ary.map do |x|
+    case
+    when x == "a"
+      x = "A"
+    when x == "e"
+      x = "E"
+    when x == "i"
+      x = "I"
+    when x == "o"
+      x = "O"
+    when x == "u"
+      x = "U"
+    else
+      x = x
+    end
+  end
+  upcase_vowels_ary
+end
+
+letter_changes("hello world!")
