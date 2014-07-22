@@ -1,4 +1,4 @@
-challenges-ruby-coderbyte
+Coderbyte challenges done in Ruby 2.1.2
 =========================
 
-ruby challenges from coderbyte.com
+
