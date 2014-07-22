@@ -1,0 +1,14 @@
+# 06
+# Using the Ruby language, have the function LetterCapitalize(str) take the str parameter
+# being passed and capitalize the first letter of each word. Words will be separated by only one space.
+
+def letter_capitalize(str)
+  ary = str.split()
+  capitalize_magic(ary).join(" ")
+end
+
+def capitalize_magic(ary)
+  ary.map { |x| x.capitalize }
+end
+
+letter_capitalize("hello there, how are you")
