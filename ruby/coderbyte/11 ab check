@@ -1,0 +1,27 @@
+#11
+# Using the Ruby language, have the function ABCheck(str) take the str
+# parameter being passed and return the string true if the characters a and b
+# are separated by exactly 3 places anywhere in the string at least once
+# (ie. "lane borrowed" would result in true because there is exactly three characters between a and b).
+# Otherwise return the string false.
+
+def AB_check(str)
+  ary = str.split('')
+  check_letter(ary)
+end
+
+def check_letter(ary)
+  true_instance = 0
+  ary.each_index do |x|
+    if ary[x] == "a"
+      ((ary[x-4] == "b" && (x-4) >= 0) || ary[x+4] == "b") ? true_instance += 1 : true_instance
+    end
+  end
+  true_instance > 0 ? true : false
+end
+
+AB_check("after badly") # false
+AB_check("Laura sobs")  # true
+AB_check("away obe")    # true
+AB_check("123adzvb")    # true
+AB_check("123advb")     # false
