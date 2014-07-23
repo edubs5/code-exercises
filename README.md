@@ -1,4 +1,4 @@
 readme
 =========================
 
-Coding challenges
+code exercises
