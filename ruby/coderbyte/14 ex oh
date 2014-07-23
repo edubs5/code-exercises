@@ -1,0 +1,24 @@
+#14
+# Using the Ruby language, have the function ExOh(str) take the str parameter being
+# passed and return the string true if there is an equal number of x's and o's,
+# otherwise return the string false. Only these two letters will be entered in the string,
+# no punctuation or numbers. For example: if str is "xooxxxxooxo" then the output
+# should return false because there are 6 x's and 5 o's.
+
+def ex_oh(str)
+ary = str.split('')
+return false if ary.length % 2 != 0
+x_count = count_letter(ary, "x")
+o_count = count_letter(ary, "o")
+x_count == o_count
+end
+
+def count_letter(ary, letter)
+  count = 0
+  ary.each { |x| x == letter ? count += 1 : count }
+  count
+end
+
+ex_oh("xxooo")      # false
+ex_oh("xxooox")     # true
+ex_oh("xxoooxox")   # true
