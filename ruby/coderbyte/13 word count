@@ -1,0 +1,16 @@
+# #13
+# Using the Ruby language, have the function WordCount(str) take the str
+# string parameter being passed and return the number of words the string
+# contains (ie. "Never eat shredded wheat" would return 4). Words will be separated by single spaces.
+
+def word_count(str)
+  ary = str.split
+  words = 0
+  ary.each do |x|
+    /\w/ =~ x ? words += 1 : words
+  end
+  words
+end
+
+word_count("happy birthday")                                  # 2
+word_count("krispy kremes ? oh yea, that's gooooooood!")      # 6
