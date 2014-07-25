@@ -1,0 +1,76 @@
+#20
+# Take both parameters being passed, divide num1 by num2, and return the
+# result as a string with properly formatted commas. If an answer is only 3 digits long,
+# return the number with no commas (ie. 2 / 3 should output "1"). For example:
+# if num1 is 123456789 and num2 is 10000 the output should be "12,345".
+
+
+def division_stringified(num1, num2)
+  quotient = (num1.to_f / num2).round
+  quotient_str = quotient.to_s
+  quotient_str.length > 3 ? add_commas(quotient_str, nil) : quotient_str
+end
+
+def add_commas(str, formatted_ans)
+  formatted_ans ||= ""
+  ary = str.split('')
+  three_str = ary.pop(3).join
+  if ary.length <= 3
+    formatted_ans = ary.join + "," + three_str
+  else
+    formatted_ans = three_str
+  end
+  if ary.length > 3
+    formatted_ans = add_commas(ary.join, three_str) + "," + formatted_ans
+  end
+  formatted_ans
+end
+
+
+division_stringified(2, 3)              # => 1
+division_stringified(12340, 2)          # => 6,170
+division_stringified(1234567, 2)        # => 617,284
+division_stringified(123456789, 2)      # => 61,728,395
+division_stringified(1234567890, 2)     # => 617,283,945
+
+
+# Another way ## => ### => ### => ### => ### => ### => ### => ### => ### => ### => ### => ### => ###
+
+def division_stringified(num1,num2)
+  quotient = (num1.to_f/num2).round
+  return quotient if quotient.to_s.length < 4
+  formatted_ans = []
+  n = quotient.to_s.length / 3
+  p quotient
+  add_commas(quotient.to_s, n, formatted_ans)
+end
+
+def add_commas(str, n, formatted_ans)
+  ary = str.split('')
+  formatted_ans = ary.pop(3)
+  n.times do
+    formatted_ans = ary.pop(3) + [","] + formatted_ans
+  end
+  formatted_ans.shift if formatted_ans[0] == ","
+  formatted_ans.join
+end
+
+division_stringified(2, 3)             # => 1
+division_stringified(12340, 2)          # => 6,170
+division_stringified(1234567, 2)        # => 617,284
+division_stringified(123456789, 2)      # => 61,728,395
+division_stringified(1234567890, 2)     # => 617,283,945
+
+
+# and yet another way ## => ### => ### => ### => ### => ### => ### => ### => ### => ### => ### => ### => ###
+
+def division_stringified(num1,num2)
+  quotient = (num1.to_f/num2.to_f).round.to_s
+  quotient.reverse.scan(/\d{1,3}/).join(',').reverse
+end
+
+division_stringified(2, 3)             # => 1
+division_stringified(12340, 2)          # => 6,170
+division_stringified(1234567, 2)        # => 617,284
+division_stringified(123456789, 2)      # => 61,728,395
+division_stringified(1234567890, 2)     # => 617,283,945
