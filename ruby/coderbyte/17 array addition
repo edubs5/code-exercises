@@ -1,0 +1,35 @@
+# 17
+# Take the array of numbers stored in arr and return the string true if any combination
+# of numbers in the array can be added up to equal the largest number in the array, otherwise
+# return the string false. For example: if arr contains [4, 6, 23, 10, 1, 3] the output should
+# return true because 4 + 6 + 10 + 3 = 23. The array will not be empty, will not contain all the
+# same elements, and may contain negative numbers.
+
+# Note - the combination method made this problem a lot easier than it would have been.  Spent a good
+# amount of time researching Knapsack problem, NP-complete and etc ...
+
+
+def array_addition(arr)
+  max = arr.sort!.pop
+  found_combo = 0
+  found_combo = combo_check(arr, max, arr.length, found_combo)
+  found_combo == 1 ? true : false
+end
+
+def combo_check(arr, max, n, y)
+  return false if n == 0
+  subsets = arr.combination(n).to_a
+  subsets.each do |x|
+    if x.inject(:+) == max
+      y = 1
+    end
+  end
+  y > 0 ? 1 : combo_check(arr,max,n-1,y)
+end
+
+array_addition([1,2,3,4])           # true
+array_addition([0,1])               # false
+array_addition([-3,5,2,-1])         # false
+array_addition([-3,1,3,4])          # true
+array_addition([10,20,30,40,100])   # true
+array_addition([31,2,90,50,7])      # true
