@@ -1,0 +1,26 @@
+# 18
+# Take the str parameter being passed and return the first word with the
+# greatest number of repeated letters. For example: "Today, is the greatest day ever!"
+# should return greatest because it has 2 e's (and 2 t's) and it comes before ever which
+# also has 2 e's. If there are no words with repeating letters return -1. Words will be separated by spaces.
+
+def letter_count(str)
+  highest_count = 1
+  the_word = ""
+  ary = str.split
+  ary.each do |word|
+    p word
+    word.split('').each do |letter|
+      count = word.count(letter)
+      count > highest_count ? the_word = word : the_word
+      count > highest_count ? highest_count = count : highest_count
+    end
+  end
+  highest_count > 1 ? the_word : -1
+end
+
+letter_count("a")                             # -1
+letter_count("piig")                          # piig
+letter_count("piig fliies")                   # piig
+letter_count("a piig fliies eeeast")          # eeeast
+letter_count("a piig fliies eeeast weest")    # eeeast
