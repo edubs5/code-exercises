@@ -1,0 +1,20 @@
+# 19
+ # Take the array of numbers stored in arr and return the second lowest and
+ # second greatest numbers, respectively, separated by a space.
+ # For example: if arr contains [7, 7, 12, 98, 106] the output should be 12 98.
+ # The array will not be empty and will contain at least 2 numbers. It can get tricky if there's just two numbers!
+
+def second_great_low(ary)
+  refined_ary = ary.uniq.sort
+  return "#{ary.sort[1]} #{ary.sort[0]}" if ary.length == 2
+  refined_ary.length > 2 ? "#{refined_ary[-2]} #{refined_ary[1]}" : "#{refined_ary[1]} #{refined_ary[0]}"
+end
+
+second_great_low([3, 12])                # 12 3
+second_great_low([122, 12])              # 122 12
+second_great_low([122, 12, 8])           # 12 12
+second_great_low([122, 12, 12])          # 122 12
+second_great_low([4, 60, 7, 188])        # 60 7
+second_great_low([-4, -5, 10, 2])        # 2 -4
+second_great_low([1, 42, 42, 180])       # 42 42
+second_great_low([2,2,2,5,5,5,6])        # 5 5
