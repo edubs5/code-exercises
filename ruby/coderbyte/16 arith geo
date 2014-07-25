@@ -1,0 +1,54 @@
+# 16
+# Take the array of numbers stored in arr and return the string "Arithmetic" if the sequence follows an arithmetic
+# pattern or return "Geometric" if it follows a geometric pattern. If the sequence doesn't
+# follow either pattern return -1. An arithmetic sequence is one where the difference between
+# each of the numbers is consistent, where as in a geometric sequence, each term after the first
+# is multiplied by some constant or common ratio. Arithmetic example: [2, 4, 6, 8] and
+# Geometric example: [2, 6, 18, 54]. Negative numbers may be entered as parameters,
+# 0 will not be entered, and no array will contain all the same elements.
+
+def arith_geo(arr)
+  arth_result = arith_test(arr)
+  geo_result = geo_test(arr)
+  return -1 if arth_result == false && geo_result == false
+  return "Arithmetic" if arth_result == true && geo_result == false
+  return "Geometric"  if geo_result == true && arth_result == false
+end
+
+def arith_test(arr)
+  constant = arr[1] - arr[0]
+  false_count = 0
+  arr.each_index do |i|
+    (i * constant + arr[0] == arr[i]) ? false_count : false_count += 1
+  end
+  false_count > 0 ? false : true
+end
+
+arith_test([3,9,27,81])         # false
+arith_test([3,12,27,30])        # false
+arith_test([2,4,6,8])           # true
+arith_test([1,2,3,4])           # true
+arith_test([-3,-4,-5,-6,-7])    # true
+
+def geo_test(arr)
+  ratio = arr[1].to_f / arr[0]
+  false_count = 0
+  arr.each_index do |i|
+    break if arr[i+1] == nil
+    arr[i+1] / arr[i] == ratio ? false_count : false_count += 1
+  end
+  false_count > 0 ? false : true
+end
+
+geo_test([-3,-4,-5,-6,-7])    # false
+geo_test([2,4,6,8])       # false
+geo_test([2,4,6,12])      # false
+geo_test([3,9,27,81])     # true
+geo_test([2,4,8,16])      # true
+geo_test([4,8,16,32])      # true
+
+arith_geo([2,4,6,8])      # arithmetic
+arith_geo([3,9,27,81])    # geometric
+arith_geo([2,5,7,10])     # -1
+arith_geo([2,5,37,40])    # -1
+arith_geo([2,6,18,54])    # -1
