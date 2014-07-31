@@ -1,0 +1,37 @@
+# 21
+# Take the str parameter being passed which will be two times (each properly formatted with a
+# colon and am or pm) separated by a hyphen and return the total number of
+# minutes between the two times. The time will be in a 12 hour clock format.
+# For example: if str is 9:00am-10:00am then the output should be 60.
+# If str is 1:00pm-11:00am the output should be 1320.
+
+def counting_min(str)
+  ary = str.split("-")
+  start_time = convert_time(ary[0])
+  end_time = convert_time(ary[1])
+  return 1440 if start_time == end_time
+  start_time > end_time ? 1440 - start_time + end_time : end_time - start_time
+end
+
+def convert_time(str)
+  return 1440 if str == "12:00am"
+  str = str.gsub!("am", ":") || str.gsub!("pm", ":12")
+  ary = str.split(":")
+  min = ary[0].to_i * 60 + ary[1].to_i
+
+  # only add 720 min to PM times that are not 12pm
+  return min if ary.length == 2
+  return min if ary[0] == "12" && ary.length == 3
+  return min + 720
+end
+
+# convert_time("11:12pm")
+# convert_time("12:12pm")
+# convert_time("1:23am")
+
+counting_min("9:00am-10:00am")   # 60
+counting_min("1:23am-1:08am")    # 1425
+counting_min("9:00pm-10:00am")   # 780
+counting_min("5:00am-10:00pm")   # 1020
+counting_min("12:30pm-12:00am")  # 690
+counting_min("9:00am-9:00am")    # 1440
