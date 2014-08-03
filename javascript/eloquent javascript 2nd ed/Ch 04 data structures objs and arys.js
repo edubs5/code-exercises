@@ -151,14 +151,58 @@ console.log(arrayValue);
 
 // If you haven’t already, also write a recursive version of nth.
 
-//
-//
-//
+function arrayToList(ary) {
+  var obj = {};
+  for (var i = 0; i < ary.length; i++) {
+    obj.value = ary.shift();
+    if (ary.length === 0) {
+      obj.rest = null;
+    } else {
+      obj.rest = arrayToList(ary);
+    }
+
+  }
+  return obj;
+}
+
+console.log(arrayToList([10, 20]));
+// → {value: 10, rest: {value: 20, rest: null}}
 
 
+function listToArray(list) {
+  var ary = [];
+  for (var prop = list; prop; prop = prop.rest) {
+    ary.push(prop.value);
+  }
+  return ary;
+}
+
+console.log(listToArray(arrayToList([10, 20, 30])));
+// → [10, 20, 30]
 
 
+function prepend(e, list) {
+  var newList = {};
+  newList.value = e;
+  newList.rest = list;
+  return newList;
+}
 
+console.log(prepend(10, prepend(20, null)));
+// → {value: 10, rest: {value: 20, rest: null}}
+
+
+function nth(list, num) {
+  if (num == 0) {
+    return list.value;
+  } else {
+    return nth(list.rest, num-1);
+  }
+}
+
+
+console.log(nth(arrayToList([10, 20, 30]), 1));
+// → 20
 
 
 // Deep comparison
@@ -176,8 +220,22 @@ console.log(arrayValue);
 // But you have to take one silly exception into account: by a historical accident,
 // typeof null also produces "object".
 
+// Your test for whether you are dealing with a real object will look something like
+// typeof x == "object" && x != null. Be careful to compare properties only when both
+// arguments are objects. In all other cases you can just immediately return the result of applying ===.
+
+// Use a for/in loop to go over the properties. You need to test whether both objects have
+// the same set of property names and whether those properties have identical values.
+// The first test can be done by counting the properties in both objects and
+// returning false if the numbers of properties are different. If they’re the same,
+// then go over the properties of one object, and for each of them, verify that the
+// other object also has the property. The values of the properties are compared by a recursive call to deepEqual.
+
+// Returning the correct value from the function is best done by immediately
+// returning false when a mismatch is noticed and returning true at the end of the function.
+
 function deepEqual(a,b) {
-  return a === b
+  return a === b;
 }
 
 //
