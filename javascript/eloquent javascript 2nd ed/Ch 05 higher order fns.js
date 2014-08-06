@@ -174,7 +174,16 @@ function average(array) {
   return array.reduce(plus) / array.length;
 }
 
-// Your code here.
+var sixteenth = ancestry.filter(function(person){
+  return byName[person.name].died < 1600;
+})
+
+var sixteenthLifespan = [];
+sixteenth.forEach(function(person) {
+  return sixteenthLifespan.push(person.died - person.born);
+});
+
+console.log("16: " + average(sixteenthLifespan));
 
 // → 16: 43.5
 //   17: 51.2
