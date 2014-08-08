@@ -56,6 +56,7 @@
 // array methods --> forEach, filter, map, reduce, apply, bind
 
 
+
 // Exercises
 
 // Flattening
@@ -176,14 +177,36 @@ function average(array) {
 
 var sixteenth = ancestry.filter(function(person){
   return byName[person.name].died < 1600;
-})
+});
 
 var sixteenthLifespan = [];
 sixteenth.forEach(function(person) {
   return sixteenthLifespan.push(person.died - person.born);
 });
 
+
+var seventeenth = ancestry.filter(function(person){
+  return byName[person.name].died < 1700 && byName[person.name].died > 1600;
+});
+
+var seventeenthLifespan = [];
+seventeenth.forEach(function(person) {
+  return seventeenthLifespan.push(person.died - person.born);
+});
+
+
+var eighteenth = ancestry.filter(function(person){
+  return byName[person.name].died < 1800 && byName[person.name].died > 1700;
+});
+
+var eighteenthLifespan = [];
+eighteenth.forEach(function(person) {
+  return eighteenthLifespan.push(person.died - person.born);
+});
+
 console.log("16: " + average(sixteenthLifespan));
+console.log("17: " + average(seventeenthLifespan));
+console.log("18: " + average(eighteenthLifespan));
 
 // → 16: 43.5
 //   17: 51.2
