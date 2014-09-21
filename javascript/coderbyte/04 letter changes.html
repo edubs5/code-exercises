@@ -1,0 +1,112 @@
+<!-- 04 -->
+<!-- have the function LetterChanges(str) take the str parameter being passed -->
+<!-- and modify it using the following algorithm. Replace every letter in the -->
+<!-- string with the letter following it in the alphabet (ie. c becomes d, z becomes a). -->
+<!-- Then capitalize every vowel in this new string (a, e, i, o, u) and finally return -->
+<!-- this modified string. -->
+
+<script>
+
+function letterChanges(str) {
+  ary = str.split('')
+
+  increaseCharCode(ary);
+  var reformattedStr = capitalizeVowels(ary);
+
+  return reformattedStr.join("");
+}
+
+function increaseCharCode(ary) {
+  for (i=0; i<ary.length; i++) {
+    var charCode = ary[i].charCodeAt(0)
+    if (charCode >= 97 && charCode < 122) {
+      ary[i] = String.fromCharCode(charCode + 1)
+    } else if ( ary[i] == "z") {
+      ary[i] = "a"
+    } else {
+      ary[i] = ary[i]
+    }
+  }
+  return ary;
+}
+
+function capitalizeVowels(ary) {
+
+  for (i=0; i<ary.length; i++) {
+    if (ary[i] == "a") {
+      ary[i] = "A";
+    } else if (ary[i] == "e") {
+      ary[i]= "E";
+    } else if (ary[i] == "i") {
+      ary[i] = "I";
+    } else if (ary[i] == "o") {
+      ary[i] = "O";
+    } else if (ary[i] == "u") {
+      ary[i] = "U";
+    }
+  }
+  return ary;
+}
+
+var a = 'a %8 string herez!'
+var b = "hello*3"
+var c = "fun times!"
+
+console.log(letterChanges(a) === "b %8 tUsjOh IfsfA!")
+console.log(letterChanges(b) === "Ifmmp*3")
+console.log(letterChanges(c) === "gvO Ujnft!")
+
+
+</script>
+
+
+
+<!-- answers from other people, I'm just analyzing their code -->
+<script>
+
+<!-- mihchang -->
+function LetterChanges(str) {
+
+  var ret = '';
+  for (var i = 0; i < str.length; i++) {
+    var s = str.charAt(i);
+    if (/[^a-zA-Z]/.test(s)) {
+      ret += s;
+    } else if (s === 'z' || s === 'Z') {
+      ret += 'A';
+    } else {
+      ret += String.fromCharCode(str.charCodeAt(i) + 1);
+    }
+  }
+  ret = ret.replace(/a/g, 'A');
+  ret = ret.replace(/e/g, 'E');
+  ret = ret.replace(/i/g, 'I');
+  ret = ret.replace(/o/g, 'O');
+  ret = ret.replace(/u/g, 'U');
+  return ret;
+
+}
+
+<!-- SuprDewd -->
+function LetterChanges(str) {
+
+  var res = "";
+  for (var i = 0; i < str.length; i++) {
+    var cur = str[i];
+    if (str[i] == 'z') {
+      cur = 'a';
+    } else if (str.charCodeAt(i) >= 'a'.charCodeAt(0) && str.charCodeAt(i) <= 'z'.charCodeAt(0)) {
+      cur = String.fromCharCode(str.charCodeAt(i) + 1);
+      //cur = 'X';
+    }
+
+    if (cur == 'a' || cur == 'e' || cur == 'i' || cur == 'o' || cur == 'u') {
+      cur = cur.toUpperCase();
+    }
+    res += cur;
+  }
+
+  // code goes here
+  return res;
+}
+</script>
