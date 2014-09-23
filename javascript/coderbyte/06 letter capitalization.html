@@ -1,0 +1,51 @@
+<script>
+
+function letterCapitalize(str) {
+
+  var words = str.split(" ")
+  for(i = 0; i < words.length; i++) {
+    var letters = words[i].split('');
+    letters[0] = letters[0].toUpperCase()
+    words[i] = letters.join('')
+  }
+  return words.join(' ');
+
+}
+
+console.log(letterCapitalize("a sentence here") == "A Sentence Here")
+console.log(letterCapitalize("hello world") == "Hello World")
+console.log(letterCapitalize("i ran there") == "I Ran There")
+
+
+
+
+<!-- answers from other people, just analyzing their code -->
+<!-- SuprDewd -->
+function LetterCapitalize(str) {
+
+  var last = ' ';
+  var res = '';
+
+  for (var i = 0; i < str.length; i++) {
+    if (last == ' ') {
+      res += str[i].toUpperCase();
+    } else {
+      res += str[i];
+    }
+
+    last = str[i];
+  }
+
+  // code goes here
+  return res;
+
+}
+
+<!-- MarshallOfSound -->
+function LetterCapitalize(str) {
+
+  return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});;
+
+}
+
+</script>
