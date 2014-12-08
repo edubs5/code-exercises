@@ -1,0 +1,38 @@
+<script>
+function timeConvert(num) {
+  var hr = ""
+  var min = ""
+
+  hr = Math.floor(num/60)
+  min = num % 60
+
+  return hr + ":" + min
+
+}
+
+// Input = 126 Output = "2:6"
+// Input = 45 Output = "0:45"
+
+console.log(timeConvert(126))
+console.log(timeConvert(45))
+
+
+// marshalofsound
+function TimeConvert(num) {
+
+  // code goes here
+  var h = Math.round((num/60)-0.5);
+  var m = num - (h*60);
+  num = h + ":" + m;
+  return num;
+
+}
+
+function TimeConvert(num) {
+
+  // code goes here
+  return Math.floor(num/60) + ':' + (num%60);
+
+}
+
+</script>
