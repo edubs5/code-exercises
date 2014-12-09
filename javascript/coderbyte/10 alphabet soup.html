@@ -1,0 +1,26 @@
+<script>
+
+function alphabetSoup(str) {
+  return str.toLowerCase().split('').sort().join('')
+}
+
+// Input = "coderbyte" Output = "bcdeeorty"
+// Input = "hooplah" Output = "ahhloop"
+
+console.log(alphabetSoup("coderbyte"))
+console.log(alphabetSoup("hooplah"))
+
+// marshallofsound
+function AlphabetSoup(str) {
+  var arr=str.split(" ");
+  str="";
+  for (var i in arr) {
+    arr[i] = arr[i].split("").sort().join("");
+  }
+  return arr.join(" ");
+}
+
+
+
+
+</script>
