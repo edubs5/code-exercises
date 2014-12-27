@@ -1,5 +1,5 @@
 # 16
-# Take the array of numbers stored in arr and return the string "Arithmetic" if the sequence follows an arithmetic
+# return the string "Arithmetic" if the sequence follows an arithmetic
 # pattern or return "Geometric" if it follows a geometric pattern. If the sequence doesn't
 # follow either pattern return -1. An arithmetic sequence is one where the difference between
 # each of the numbers is consistent, where as in a geometric sequence, each term after the first

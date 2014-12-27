@@ -1,7 +1,6 @@
 #10
-# Take the str parameter being passed and return the string with the letters in
-# alphabetical order (ie. hello becomes ehllo). Assume numbers and punctuation
-# symbols will not be included in the string.
+# return the string with the letters in
+# alphabetical order (ie. hello becomes ehllo)
 
 def alphabet_soup(str)
   ary = str.split()

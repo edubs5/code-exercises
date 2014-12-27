@@ -1,0 +1,7 @@
+# Add up all the numbers from 1 to num.
+
+def simple_adding(num)
+  (1..num).reduce(:+)
+end
+
+simple_adding(8);

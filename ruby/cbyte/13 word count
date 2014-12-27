@@ -1,6 +1,6 @@
 # #13
-# Take the string parameter being passed and return the number of words the string
-# contains (ie. "Never eat shredded wheat" would return 4). Words will be separated by single spaces.
+# return the number of words the string
+# contains (ie. "Never eat shredded wheat" would return 4)
 
 def word_count(str)
   ary = str.split

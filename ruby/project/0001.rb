@@ -5,8 +5,8 @@ def calc_sum(limit, num1, num2)
     ary << i if i % 3 == 0 || i % 5 == 0
     i += 1
   end
-  p ary.reduce(:+)
+  ary.reduce(:+)
 end
 
 
-calc_sum(1000, 3, 5)
+p calc_sum(1000, 3, 5) == 233168

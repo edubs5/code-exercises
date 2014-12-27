@@ -1,0 +1,5 @@
+# return the factorial
+
+def first_factorial(num)
+  (1..num).reduce(:*)
+end

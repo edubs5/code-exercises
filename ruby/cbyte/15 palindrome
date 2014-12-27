@@ -1,0 +1,10 @@
+#15
+# return the string true if the parameter is a palindrome,
+
+def palindrome(str)
+  str.split.join == str.split.join.reverse
+end
+
+palindrome("never odd or even")    # true
+palindrome("eye")                  # true
+palindrome("not a palindrome")     # false

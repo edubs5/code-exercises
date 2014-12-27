@@ -1,0 +1,5 @@
+# return the string in reversed order.
+
+def first_reverse(str)
+  str.reverse
+end
