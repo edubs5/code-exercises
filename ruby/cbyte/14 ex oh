@@ -3,11 +3,11 @@
 # otherwise return false
 
 def ex_oh(str)
-ary = str.split('')
-return false if ary.length % 2 != 0
-x_count = count_letter(ary, "x")
-o_count = count_letter(ary, "o")
-x_count == o_count
+  ary = str.split('')
+  return false if ary.length % 2 != 0
+  x_count = count_letter(ary, "x")
+  o_count = count_letter(ary, "o")
+  x_count == o_count
 end
 
 def count_letter(ary, letter)
